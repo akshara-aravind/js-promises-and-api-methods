@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Method</title>
+</head>
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+</style>
+<body>
+    <form class="container">
+        <label>Name:
+            <input id = "name" type="text" placeholder="Enter your name...">
+        </label>
+        <label>E-mail Id:
+            <input id = "email" type="email" placeholder="Enter your E-mailId">
+        </label>
+        <label>Message:
+            <textarea id="message"></textarea>
+        </label>
+        <button>Submit</button>
+    </form>
+    <p id="status"></p>
+    <script src="post.js"></script>
+</body>
+</html>

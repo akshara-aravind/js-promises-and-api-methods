@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!--
+      Fetch data from two APIs sequentially:
+    https://jsonplaceholder.typicode.com/posts
+    https://jsonplaceholder.typicode.com/users
+-->
+    <div class="container"></div>
+    <script>
+        const container = document.querySelector('.container')
+       let url1 = 'https://jsonplaceholder.typicode.com/posts'
+       let url2 = 'https://jsonplaceholder.typicode.com/users'
+
+       let html = ''
+       let postDatas = []
+       fetch(url1)
+       .then(res => res.json())
+       .then(data1 =>{
+        console.log(data1)
+        postDatas = data1
+        return fetch(url2)
+       })
+       .then(res => res.json())
+       .then(data2 =>{
+        console.log(data2)
+        postDatas.forEach(post =>{
+            let user = data2.find(u => u.id === post.userId)
+        if(user){
+            html += `
+            <h3>${data1.title}</h3>
+            <h5>${data2.name}</h5>`
+        }
+        })
+        container.innerHTML = html
+       })
+       .catch(err =>  console.log(err))
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random images</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    .btn{
+        padding: 10px 8px;
+        color: #fff;
+        background-color: #000;
+        position: fixed;
+    }
+    .box{
+        width: 90%;
+        margin: 100px auto 0px;
+        border: 2px solid #000;
+    }
+    .box img{
+        max-width: 300px;
+        max-height: 300px;
+        object-fit: cover;
+    }
+    /* .hourmainContent{
+        margin-left: 413px;
+    }
+    .hoursunny{
+    width: 44px;
+    }
+    .hourlargeScreen{
+        margin: 0px;
+    } */
+
+</style>
+<body>
+    <h1>Random Dogs</h1>
+       <button class="btn">Load More</button>
+        <div class="box"></div>
+
+        <script>
+            let url = 'https://dog.ceo/api/breeds/image/random'
+            let btn = document.querySelector('.btn')
+            let box = document.querySelector('.box')
+            btn.addEventListener('click',()=>{
+                fetch(url)
+                .then(response => response.json())
+                .then(data =>{
+                   box.insertAdjacentHTML('beforeend',`<img src = "${data.message}">`)
+                }) 
+                .catch(err => console.log('error'))
+            })
+        </script>
+</body>
+</html>

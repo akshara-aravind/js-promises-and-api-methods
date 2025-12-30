@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+    body{
+        text-align: center;
+    }
+    .itemContainer{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    h4{
+        border: 1px solid gray;
+        border-radius: 8px;
+        padding: 10px;
+        width: 30%;
+    }
+    .input, .boolean{
+        padding: 10px;
+    }
+    .addBtn{
+        background-color: grey;
+    }
+    button{
+        padding: 10px;
+        background-color: brown;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+    .Done{
+        background-color: green;
+    }
+    .Pending{
+        background-color: brown;
+    }
+</style>
+<body>
+    <h3>Todo List</h3>
+    <label>Task:</label>
+    <input class="input" type="text" placeholder="Enter tasks..."><br><br>
+    <label>IsCompleted:</label>
+    <select id="boolean">
+        <option value="">select item</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select><br><br>
+    <button class="addBtn">Add</button><br><br>
+    <div class="lists"></div>
+    <div class="newTask"></div>
+    <script src="full.js"></script>
+</body>
+</html>

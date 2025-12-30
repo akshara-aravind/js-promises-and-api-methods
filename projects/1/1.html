@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    .contanier{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .profileContainer{
+        width: 300px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        box-shadow:0px 4px 10px rgba(0,0,0,0.2);
+        border-radius: 15px;
+        text-align: center;
+        opacity: 0.9;
+    }
+    .profile{
+        background-color: rgb(68, 68, 231);
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        height: 120px;
+        position: relative;
+    }
+    .profilePhoto{
+        margin-top: 10%;
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        border-radius: 50%;
+        border: 2px solid#fff;
+    }
+    h3{
+        font-weight:500;
+        font-family: sans-serif;
+    }
+    p{
+        font-size: 12px;
+    }
+    img{
+        width: 25px;
+        height: 25px;
+    }
+    .with{
+        display: none;
+    }
+    button{
+        margin: 10px;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        background-color:rgb(68, 68, 231) ;
+        padding: 5px 8px;
+        font-size: 12kpx;
+    }
+    .status{
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 20px 0;
+        font-size: 14px;
+    }
+    .status div{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="profileContainer">
+            <div class="profile">
+           <img class= 'profilePhoto' src="img/profile.jpg" alt="profile">
+           </div>
+           <h3>CondingLab</h3>
+           <p>YouTube & Blogger</p>
+           <img src="img/icons8-facebook-logo-50.png" alt="face">
+           <img src="img/icons8-twitter-circled-48.png" alt="twitter">
+           <img src="img/icons8-youtube-48.png" alt="YouTube">
+           <img src="img/icons8-instagram-logo-48.png" alt="insta">
+           <div class="button">
+                <button>Subscribe</button>
+                <button>Message</button>
+           </div>
+           <div class="status">
+                <div><img class="without" src="img/icons8-love-48.png" alt="withoutColor">
+                <img class="with" src="img/icons8-love-48 (1).png" alt="with"><span class="likeCount">60k</span></div>
+                <div><img src="img/icons8-speech-bubble-50.png" alt="msg">20k</div>
+                <div><img src="img/icons8-forward-arrow-50.png" alt="share">12k</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const withouLike = document.querySelector('.without')
+    const like = document.querySelector('.with')
+    const likeCount = document.querySelector('.likeCount')
+
+    withouLike.addEventListener('click',()=>{
+        withouLike.style.display = 'none'
+        like.style.display = 'block' 
+        likeCount.innerHTML ='61k'
+    })
+    like.addEventListener('click',()=>{
+        like.style.display = 'none'
+        withouLike.style.display = 'block'
+        likeCount.innerHTML = '60k'
+    })
+
+    
+</script>
+</html>,
