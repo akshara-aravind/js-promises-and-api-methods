@@ -23,7 +23,6 @@ fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
 })
 
 inputBtn.addEventListener('click',(e) =>{
-    window.scrollTo(0,document.body.scrollHeight)
     let title = inputTask.value
     let completed = isCompleted.value === 'true'
     fetch('https://jsonplaceholder.typicode.com/todos', {
@@ -39,6 +38,7 @@ inputBtn.addEventListener('click',(e) =>{
     .then(data => {
         let todo ='';
         if(data.title !== ''){
+            window.scrollTo(0,document.body.scrollHeight)
             todo += `
             <div class = "itemContainer  class ="${data.completed ? "completedTask": "notCompleted"}" ">
                 <h4>${data.title}</h4>
