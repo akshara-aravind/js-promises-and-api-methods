@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<style>
+    body{
+        background-color: bisque;
+        font-family: cursive;
+    }
+    h1{
+        font-family: auto;
+        font-size: 50px;
+        text-shadow: 2px 2px 2px grey ;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .inputBox{
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        font-size: 15px;
+        transition: transform 0.4s ease-in-out;
+    }
+    .inputBox:hover{
+        transform: scale(1.1);
+    }
+    label{
+        font-size: 18px;
+    }
+    #boolean{
+        padding: 3px;
+    }
+    .addBtn{
+        padding: 8px 15px;
+        border: none;
+        border-radius: 8px;
+        background-color: brown;
+        color: #fff;
+        font-size: 18px;
+        transition: transform 0.4s ease-in-out;
+    }
+    .addBtn:hover{
+        transform: scale(1.1);
+        border-radius: none;
+        border: 1px solid #000;
+        background-color: #fff;
+        color: brown;
+    }
+    .items{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    h4{
+        border: 1px solid gray;
+        border-radius: 8px;
+        padding: 10px;
+        width: 30%;
+        background-color: #fff;
+    }
+    .deleteBtn{
+        padding: 10px;
+        background-color: rgb(153, 35, 35);
+        color: #fff;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Todo App</h1>
+        <input type="text" placeholder="Enter task..." class="inputBox"><br>
+        <div>
+            <label>IsCompleted:</label>
+            <select id="boolean">
+                <option value="">select item</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select><br><br>
+        </div>
+         <button class="addBtn">Add</button><br>
+    </div>
+    <div class="taskContainer"></div><br>
+    <script src="script.js"></script>
+</body>
+</html>

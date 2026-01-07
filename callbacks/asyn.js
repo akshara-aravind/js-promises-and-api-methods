@@ -53,3 +53,23 @@ async function data(){
     }
 }
 data()
+//1. Write a function MonitorLongRunningTasks(tasks, threshold, onSlowTask) that monitors async tasks and invokes onSlowTask(taskIndex, elapsedTime) for any task taking longer than threshold ms.
+//2 Write a function TimeoutWrapper(fn, ms) that wraps any async function fn and rejects if it takes longer than ms.
+
+//2
+function TimeoutWrapper(fn,ms){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('Operation times out')
+        },ms)
+    })
+}
+async function fetchData(){
+    try{
+        const response = await TimeoutWrapper(2000)
+        console.log(response)
+    }catch(err){
+        console.log(err)
+    }
+}
+fetchData()
