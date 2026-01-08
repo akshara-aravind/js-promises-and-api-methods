@@ -4,6 +4,8 @@ const taskContainer = document.querySelector('.taskContainer')
 const isCompleted =document.querySelector('#boolean')
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || []
+let count =tasks.length;
+
 tasks.forEach(item => {
     renderTask(item)
 })
@@ -23,18 +25,18 @@ addBtn.addEventListener('click',()=>{
     renderTask(task)
      inputBox.value =''
      isCompleted.value =''
+     count++
 })
-
 function renderTask(task){
-    let div = document.createElement('div')
-    div.className = 'items'
+    let li = document.createElement('li')
+    li.className = 'items'
 
-    div.innerHTML =`
+    li.innerHTML =`
         <input type='checkbox' ${task.complete ? 'checked':''} class="checkBox">
         <h4>${task.todo}</h4>
         <button class ="deleteBtn">Delete</button>
     `
-    taskContainer.appendChild(div)
+    taskContainer.appendChild(li)
 }
 
 taskContainer.addEventListener('click',(e)=>{
