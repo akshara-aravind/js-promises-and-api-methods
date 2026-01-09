@@ -22,14 +22,12 @@
         justify-content: center;
     }
     .inputBox{
+        width: 100%;
         padding: 10px 15px;
-        border-radius: 5px;
+        border-radius: 5px 0px 0px 5px;
         border: 1px solid grey;
         font-size: 15px;
         transition: transform 0.4s ease-in-out;
-    }
-    .inputBox:hover{
-        transform: scale(1.1);
     }
     label{
         font-size: 18px;
@@ -38,29 +36,21 @@
         padding: 3px;
     }
     .addBtn{
-        padding: 8px 15px;
+        padding: 10px 15px;
         border: none;
-        border-radius: 8px;
-        background-color: brown;
+        border-radius: 0px 5px 5px 0px;
+        background-color: grey;
         color: #fff;
-        font-size: 18px;
+        font-size: 16px;
         transition: transform 0.4s ease-in-out;
     }
     .addBtn:hover{
         transform: scale(1.1);
         border-radius: none;
         border: 1px solid #000;
-        background-color: #fff;
-        color: brown;
+        background-color: #000;
+        color: #fff;
     }
-    /* li{
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        list-style-type: decimal;
-    } */
     .items{
         display: flex;
         gap: 10px;
@@ -69,35 +59,43 @@
         width: 100%;
         list-style-type: decimal;
     }
-    h4{
+    .taskInput{
         border: 1px solid gray;
         border-radius: 8px;
         padding: 10px;
         width: 30%;
         background-color: #fff;
     }
-    .deleteBtn{
+    .deleteBtn,.edit, .saveBtn,.cancelBtn{
         padding: 10px;
         background-color: rgb(153, 35, 35);
         color: #fff;
         font-size: 18px;
         border: none;
         border-radius: 8px;
+        transition: transform 0.4s ease-in-out;
+    }
+    .edit, .saveBtn{
+        background-color: green;
+    }
+    .edit:hover, .deleteBtn:hover, .saveBtn:hover, .cancelBtn:hover{
+        transform: scale(1.1);
+        color: green;
+        background-color: #fff;
+        border-radius:none;
+        border: 1px solid #000;
+    }
+    .deleteBtn:hover, .cancelBtn:hover{
+        color: brown;
     }
 </style>
 <body>
     <div class="container">
         <h1>Todo App</h1>
-        <input type="text" placeholder="Enter task..." class="inputBox"><br>
-        <div>
-            <label>IsCompleted:</label>
-            <select id="boolean">
-                <option value="">select item</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select><br><br>
-        </div>
-         <button class="addBtn">Add</button><br>
+        <div style="display: flex;width: 25%;align-items: center;justify-content: center;">
+            <input type="text" placeholder="Enter task..." class="inputBox">
+            <button class="addBtn">Add</button><br>
+         </div>
     </div>
     <ul class="taskContainer"></ul><br>
     <script src="script.js"></script>

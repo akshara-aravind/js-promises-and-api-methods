@@ -48,3 +48,39 @@ function fibunacci(n){
     return  fibunacci(n-1)+fibunacci(n-2)
 }
 console.log(fibunacci(5))
+
+//myMap
+function myMap(arr,callback){
+    let result = []
+    for(let i=0; i<arr.length;i++){
+        result.push(callback(arr[i]))
+    }
+    return result
+}
+console.log(myMap([1,2,3],x => x*2))
+
+//myFilter
+function myFilter(arr,callback){
+    let result =[]
+    for(let i=0; i<arr.length;i++){
+        if(callback(arr[i])){
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+console.log(myFilter([1,2,3,4,5,6,7,8],x => x%2 !== 0))
+
+//myReduce
+function myReduce(arr,callback,intitialValue){
+    let acc = intitialValue
+    for(let i=0; i<arr.length;i++){ 
+    if(acc === undefined){
+        acc = arr[0]
+    }else{
+           acc = callback(acc,arr[i])
+        }
+    }
+    return acc
+}
+console.log(myReduce([1,2,3],(acc,curr) => acc + curr))

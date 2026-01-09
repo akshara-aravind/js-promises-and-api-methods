@@ -57,30 +57,53 @@
 // }
 // data()
 // //1. Write a function MonitorLongRunningTasks(tasks, threshold, onSlowTask) that monitors async tasks and invokes onSlowTask(taskIndex, elapsedTime) for any task taking longer than threshold ms.
- async function MonitorLongRunningTasks(tasks,threshold,onSlowTask){
-    let results =[]
+//  async function MonitorLongRunningTasks(tasks,threshold,onSlowTask){
+//     let results =[]
+//     for(let i=0; i<tasks.length;i++){
+//         let startTime = Date.now()
+//         let task =await tasks[i]()
+//         let endTime = Date.now()
+//         let fullTime = endTime - startTime
+//         results.push(task)
+//         if(fullTime > threshold){
+//             onSlowTask(i,fullTime)
+//         }
+//     }
+//     return results
+//  }
+//  const tasks = [
+//      () => new Promise(item => setTimeout(() => item('A'),500)),
+//      () => new Promise(item => setTimeout(() => item('B'),1000)),
+//      () => new Promise(item => setTimeout(() => item('C'),1500))
+//     ]
+//     function onSlowTask(index,time){
+//         console.log(`Task ${index} is slow: ${time}ms`)
+//     }
+// MonitorLongRunningTasks(tasks,1000,onSlowTask)
+ async function MonitorLongRunningTasks(tasks, threshold, onSlowTask){
     for(let i=0; i<tasks.length;i++){
-        let startTime = Date.now()
-        let task =await tasks[i]()
-        let endTime = Date.now()
-        let fullTime = endTime - startTime
-        console.log(fullTime)
-        
-        if(fullTime > threshold){
-            onSlowTask(i,fullTime)
+        try{
+            let start = Date.now()
+              await tasks[i]()
+            let end = Date.now()
+            let full = end -start
+            if(full  > threshold){
+                onSlowTask(i+1,full)
+            }
+        }catch(err){
+            console.log(`Task ${i+1} failed:`, err)
         }
-    }
  }
+}
  const tasks = [
-     () => new Promise(item => setTimeout(() => item('A'),500)),
-     () => new Promise(item => setTimeout(() => item('B'),1000)),
-     () => new Promise(item => setTimeout(() => item('C'),1500))
-    ]
-    function onSlowTask(index,time){
-        console.log(`Task ${index} is slow: ${time}ms`)
-    }
-MonitorLongRunningTasks(tasks,1000,onSlowTask)
- 
+    () => new Promise(item => setTimeout(() => item('A'),500)),
+    () => new Promise(item => setTimeout(() => item('B'),1500)),
+    () => new Promise(item => setTimeout(() => item('C'),2000))
+ ]
+ function onSlowTask(taskIndex,elapsedTime){
+    console.log(`Task ${taskIndex} is slow: ${elapsedTime}ms`)
+ }
+ const result = await MonitorLongRunningTasks(tasks,1000,onSlowTask)
 // //2 Write a function TimeoutWrapper(fn, ms) that wraps any async function fn and rejects if it takes longer than ms.
 
 // //2
@@ -267,7 +290,7 @@ await ParallelLimit(tasks, 2);
 //     let index = 0
 
 //     async function runTasks(){
-//         if (index >= tasks.length) return;
+//         if (index >= tasks.length) return; // for stop by tasks.length
 //         const currnetIndex = index++;
 //         results[currnetIndex] = await tasks[currnetIndex]()
 
@@ -280,13 +303,14 @@ await ParallelLimit(tasks, 2);
 //     await Promise.all(runners)
 //     return results
 // }
-// let tasks = [
+// let tasks2 = [
 //     () => fetch('https://jsonplaceholder.typicode.com/posts'),
 //     () => fetch('https://jsonplaceholder.typicode.com/users'),
 //     () => fetch('https://jsonplaceholder.typicode.com/todos')
 // ]
-// const result2 = await ParallelLimit(tasks,2)
+// const result2 = await ParallelLimit(tasks2,2)
 // console.log(result2)
+
 //2.Implement a function withTimeout(promise, ms). If the promise does not resolve within ms, reject with "Timeout"
 // function withTimeout(promise,ms){
 //     return new Promise((resolve,reject)=>{
@@ -328,3 +352,30 @@ await fn(3) → 7
 // const double = async x =>x*2
 // const result = await ComposeAsync(addOne,double)(3)
 // console.log(result)
+
+//waterfall with api simulation
+async function waterfall(task,value){
+    let result = value;
+    for(let tasks of task){
+        result = await tasks(result)
+    }
+    return result
+}
+const task =[
+   async () =>{
+    const res = await fetch('https://jsonplaceholder.typicode.com/users/1')
+    return res.json()
+   },
+
+   async(user) =>{
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+    return res.json()
+   },
+   async(posts) =>{
+    const firstPosts = posts[0]
+    const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${firstPosts.id}`)
+    return res.json()
+   }
+]
+const resu =await waterfall(task,2)
+console.log(resu)
